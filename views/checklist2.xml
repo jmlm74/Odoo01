@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="hp_checklist2_form" model="ir.ui.view">
+            <field name="name">hp_checklist2 form</field>
+            <field name="model">hp.checklist2</field>
+            <field name="arch" type="xml">
+                <form string="Check-List1 - Saisie" duplicate="0" delete="0">
+                    <header>
+                        <field name="chk2_state" string="State : " readonly="1" invisible="1"/>
+                        <field name="id" invisible="1"/>
+                        <button name="previous" class="btn-info" type="object" string="Précédent"/>
+                        <button name="next" class="btn-info" type="object" string="Suivant"/>
+                    </header>
+                    <sheet>
+                        <div attrs="{'invisible': [('chk2_state', '!=', '1')]}">
+                            <group>
+                                <h3>
+                                    <field name="chk2_seq"/>
+                                    <br/>Matériel :
+                                    <field name="chk2_material" string="Nom" attrs="{'readonly': [('id', '!=', False)]}"/>
+                                </h3>
+                                <h4>
+                                    <field name="chk2_mat_manager" string="Manager"/>
+                                </h4>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="chk2_mat_type" string="Type"/>
+                                    <field name="chk2_mat_designation" string="Designation"/>
+                                </group>
+                                <group>
+                                    <field name="chk2_mat_model" string="Model"/>
+                                    <field name="chk2_mat_serial" string="Serial"/>
+                                </group>
+                            </group>
+                        </div>
+                        <div  attrs="{'invisible': [('chk2_state', '!=', '2')]}">
+                            <group>
+                                <group>
+                                    <field name="chk2_li1" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="chk2_li2" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="chk2_li3" size="10"/>
+                                    <field name="chk2_rem1"/>
+                                    <field name="chk2_li4" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="chk2_li5" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="chk2_li6" widget="radio" options="{'horizontal': true}"/>
+                                </group>
+                            </group>
+                        </div>
+                        <div  attrs="{'invisible': [('chk2_state', '!=', '3')]}">
+                            <group>
+                                <group>
+                                    <field name="chk2_valid"/>
+                                    <field name="chk2_sticker"/>
+                                    <field name="chk2_rem"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="chk2_img1" widget="image"/>
+                                    <field name="chk2_img2" widget="image"/>
+                                </group>
+                                <group>
+                                    <field name="chk2_img3" widget="image"/>
+                                    <field name="chk2_img4" widget="image"/>
+                                </group>
+                            </group>
+                        </div>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="hp_checklist2_tree" model="ir.ui.view">
+            <field name="name">hp_checklist2 tree</field>
+            <field name="model">hp.checklist2</field>
+            <field name="arch" type="xml">
+                <tree sample="1" delete="0">
+                    <field name="chk2_seq" string="Seq"/>
+                    <field name="chk2_material" string="Material"/>
+                    <field name="chk2_mat_type" string="Type"/>
+                    <field name="chk2_mat_designation" string="Designation"/>
+                    <field name="chk2_mat_model" string="Model"/>
+                    <field name="chk2_mat_serial" string="Serial"/>
+                    <field name="chk2_mat_manager" string="Manager"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hp_checklist2_action" model="ir.actions.act_window">
+            <field name="name">CheckLists2</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hp.checklist2</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Checklist : Créer votre 1ère Check-List !
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

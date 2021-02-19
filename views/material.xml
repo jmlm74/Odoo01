@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="hp_material_form" model="ir.ui.view">
+            <field name="name">hp_material form</field>
+            <field name="model">hp.material</field>
+            <field name="arch" type="xml">
+                <form string="Materials" delete="0" duplicate="0">
+                    <header>
+                        <button name="toggle_active" class="btn-danger" type="object" string="Supprimer"
+                                confirm="Etes vous sûr ?">
+                            <field string="Supprimer" name="active" widget="boolean_button"/>
+                        </button>
+                        <field name="id" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" text="DISABLE" bg_color="bg-warning"
+                                attrs="{'invisible': [('mat_enable','=', True)]}" />
+                        <group>
+                            <group>
+                                <field name="mat_seq"/>
+                                <field name="mat_designation"  attrs="{'readonly': [('id', '!=', False)]}"/>
+                                <field name="mat_enable" />
+                            </group>
+                            <group>
+                                <field name="mat_serial"/>
+                                <field name="mat_type"/>
+                                <field name="mat_model"/>
+                            </group>
+                            <separator class="border-top border-3" string="" colspan="12"/>
+                            <group>
+                                <field name="mat_manager"/>
+                            </group>
+                            <group>
+                                <field name="mat_material" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--search view -->
+        <record id="hp_material_search" model="ir.ui.view">
+            <field name="name">hp.material search</field>
+            <field name="model">hp.material</field>
+            <field name="arch" type="xml">
+                <search string="Search Patients">
+                    <field name="mat_seq"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+
+                </search>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="hp_material_tree" model="ir.ui.view">
+            <field name="name">hp_material tree</field>
+            <field name="model">hp.material</field>
+            <field name="arch" type="xml">
+                <tree sample="1" decoration-danger="mat_enable==False" decoration-info="mat_enable==True"
+                      delete="0">
+                    <field name="mat_seq" string="Seq"/>
+                    <field name="mat_designation" string="Designation"/>
+                    <field name="mat_serial" string="Serial"/>
+                    <field name="mat_type" string="Type"/>
+                    <field name="mat_model" string="Model"/>
+                    <field name="mat_manager" string="Manager"/>
+                    <field name="mat_material" string="Primary"/>
+                    <field name="mat_enable" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="hp_materials_action" model="ir.actions.act_window">
+            <field name="name">Materials</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hp.material</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Material : Create the 1st Material
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

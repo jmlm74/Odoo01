@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="hp_line_form" model="ir.ui.view">
+            <field name="name">hp_line form</field>
+            <field name="model">hp.line</field>
+            <field name="arch" type="xml">
+                <form string="Line" duplicate="0" delete="0">
+                    <header>
+                        <button name="toggle_active" class="btn-danger" type="object" string="Supprimer"
+                                confirm="Etes vous sûr ?">
+                            <field string="Supprimer" name="active" widget="boolean_button"/>
+                        </button>
+                        <field name="id" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" text="DISABLE" bg_color="bg-warning"
+                                attrs="{'invisible': [('li_enable','=', True)]}" />
+                        <group>
+                            <group>
+                                <field name="li_seq"/>
+                                <field name="li_description"/>
+                                <field name="li_enable"/>
+                            </group>
+                            <group>
+                                <field name="li_type2" string="Type" widget="radio"/>
+                                <field name="li_name" string="Nom" attrs="{'readonly': 1}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="hp_line_tree" model="ir.ui.view">
+            <field name="name">hp_line tree</field>
+            <field name="model">hp.line</field>
+            <field name="arch" type="xml">
+                <tree sample="1" decoration-danger="li_enable==False" decoration-info="li_enable==True"
+                      delete="0">
+                    <field name="li_seq" string="Seq"/>
+                    <field name="li_name" string="Description"/>
+                    <field name="li_type2" string="Type"/>
+                    <field name="li_description" string="Libelle"/>
+                    <field name="li_enable" string="Enable" class="col_enable"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--search view -->
+        <record id="hp_line_search" model="ir.ui.view">
+            <field name="name">hp.line search</field>
+            <field name="model">hp.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Patients">
+                    <field name="li_seq"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="hp_line_action" model="ir.actions.act_window">
+            <field name="name">Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hp.line</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ligne-Checklist : Créer votre 1ère ligne !
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

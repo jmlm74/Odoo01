@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="hp_checklist_form" model="ir.ui.view">
+            <field name="name">hp_checklist form</field>
+            <field name="model">hp.checklist</field>
+            <field name="arch" type="xml">
+                <form string="Check-List" duplicate="0" delete="0" >
+                    <header>
+                        <field name="id" invisible="1"/>
+                        <button name="toggle_active" class="btn-danger" type="object" string="Supprimer"
+                                confirm="Etes vous sûr ?">
+                            <field string="Supprimer" name="active" widget="boolean_button"/>
+                        </button>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" text="DISABLE" bg_color="bg-warning"
+                                attrs="{'invisible': [('chk_enable','=', True)]}" />
+                        <group>
+                            <group>
+                                <field name="chk_seq"/>
+                                <field name="chk_name" string="Nom" attrs="{'readonly': [('id', '!=', False)]}"/>
+                                <field name="chk_enable"/>
+                            </group>
+                            <group>
+                                <field name="chk_description" string="Description"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Checklist">
+                                <group>
+                                    <field name="chk_lines" string="Check-List">
+                                        <tree editable="bottom" decoration-danger="linpos_li_enable==False"
+                                              decoration-info="linpos_li_enable==True">
+                                            <field name="linpos_pos" widget="handle"/>
+                                            <field name="linpos_line"/>
+                                            <field name="linpos_li_description"/>
+                                            <field name="linpos_li_enable" invisible="1"/>
+                                            <field name="linpos_checklist" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="hp_checklist_tree" model="ir.ui.view">
+            <field name="name">hp_checklist tree</field>
+            <field name="model">hp.checklist</field>
+            <field name="arch" type="xml">
+                <tree sample="1" decoration-danger="chk_enable==False" decoration-info="chk_enable==True"
+                      delete="0">
+                    <field name="chk_seq" string="Seq"/>
+                    <field name="chk_name" string="Description"/>
+                    <field name="chk_description" string="Libelle"/>
+                    <field name="chk_enable" string="Enable" class="col_enable"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--search view -->
+        <record id="hp_checklist_search" model="ir.ui.view">
+            <field name="name">hp.checklist search</field>
+            <field name="model">hp.checklist</field>
+            <field name="arch" type="xml">
+                <search string="Search Patients">
+                    <!-- <field name="patient_name"
+                           filter_domain="['|',('patient_name', 'ilike', self),('name_seq', 'ilike', self)]"/>
+                     -->
+                    <field name="chk_seq"/>
+                    <separator/>
+                    <!-- in filter below search NOT in search -->
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <!-- in groupby button below search -->
+                    <!-- <group expand="0" string="Group By">
+                        <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                    </group>
+                    -->
+                </search>
+            </field>
+        </record>
+
+        <record id="hp_checklist_action" model="ir.actions.act_window">
+            <field name="name">CheckLists</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hp.checklist</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Checklist : Créer votre 1ère Check-List !
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

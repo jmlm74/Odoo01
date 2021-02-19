@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "HP",
+    'name': "hp",
     'sequence': 1,
     'license': 'LGPL-3',
     'summary': """HP Test""",
@@ -16,11 +16,22 @@
     'version': '14.0.0.1.0',
     # 'images': ['static/description/icon.png'],
     # any module necessary for this one to work correctly
-    'depends': ['base', ],
+    'depends': ['base', 'contacts', 'mail', 'web', ],
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'views/views.xml'
+        'security/ir.model.access.csv',
+        'data/data.xml',
+        'data/sequence.xml',
+        'reports/report1.xml',
+        'reports/report2.xml',
+        'reports/reports.xml',
+        'views/material.xml',
+        'views/contacts.xml',
+        'views/checklist.xml',
+        'views/checklist2.xml',
+        'views/hp_css.xml',
+        'views/line.xml',
+        'views/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],

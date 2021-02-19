@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hp.report1" model="ir.actions.report">
+            <field name="name">hp_report1</field>
+            <field name="model">hp.checklist2</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hp.report_checklist</field>
+            <field name="report_file">hp.report_checklist</field>
+            <!--
+            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+            -->
+            <field name="binding_model_id" ref="model_hp_checklist2"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    <record id="hp.report2" model="ir.actions.report">
+            <field name="name">hp_report2</field>
+            <field name="model">hp.material</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hp.report_material</field>
+            <field name="report_file">hp.report_material</field>
+            <!--
+            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+            -->
+            <field name="binding_model_id" ref="model_hp_material"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+</odoo>

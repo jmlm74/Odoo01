@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hp_hp,hp.hp,model_hp_hp,base.group_user,1,1,1,1
+access_material,HP.access_material,model_hp_material,base.group_user,1,1,1,1
+
+access_checklist2,HP.access_checklist2,model_hp_checklist2,base.group_user,1,1,1,1
+
+access_checklist,HP.access_checklist,model_hp_checklist,base.group_user,1,1,1,1
+access_line,HP.access_line,model_hp_line,base.group_user,1,1,1,1
+access_linepos,HP.access_linepos,model_hp_linepos,base.group_user,1,1,1,1
+

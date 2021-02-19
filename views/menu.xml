@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- menu root hp -->
+        <menuitem id="hp_root"
+                  name="HPA"
+                  sequence="1"
+                  web_icon="HP,static/description/icon.png"/>
+
+        <!-- menu contacts -->
+        <menuitem id="menu_hp_contacts"
+                  name="Contacts"
+                  parent="hp_root"
+                  sequence="40"
+                  action="hp_contacts_action"/>
+
+        <!-- menu material -->
+        <menuitem id="menu_hp_materials"
+                  name="Materials"
+                  parent="hp_root"
+                  sequence="30"
+                  action="hp_materials_action"/>
+
+        <!-- menu Checklist -->
+        <menuitem id="menu_hp_root_chklst"
+                  name="Checklists"
+                  parent="hp_root"
+                  sequence="25"/>
+
+        <menuitem id="menu_hp_chklst"
+                  name="Check-Lists"
+                  parent="menu_hp_root_chklst"
+                  sequence="10"
+                  action="hp_checklist_action"/>
+
+        <menuitem id="menu_hp_line"
+                  name="Lines"
+                  parent="menu_hp_root_chklst"
+                  sequence="15"
+                  action="hp_line_action"/>
+
+        <!-- menu Checklist -->
+        <menuitem id="menu_hp_root_chklst2"
+                  name="Saisie Checklists"
+                  parent="hp_root"
+                  sequence="20"/>
+
+        <menuitem id="menu_hp_chklst2"
+                  name="Check-Lists2"
+                  parent="menu_hp_root_chklst2"
+                  sequence="10"
+                  action="hp_checklist2_action"/>
+    </data>
+</odoo>

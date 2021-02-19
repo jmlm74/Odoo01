@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="hp_css" name="hp.css" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/hp/static/src/css/hp_css.css"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

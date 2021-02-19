@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for hp.material -->
+        <record id="hp_material_sequence" model="ir.sequence">
+            <field name="name">material Sequence</field>
+            <field name="code">hp.material.sequence</field>
+            <field name="prefix">MAT</field>
+            <field name="padding">5</field>
+            <!-- <field name="company_id" eval="False"/> -->
+        </record>
+
+        <!-- Sequences for hp.checklist -->
+        <record id="hp_checklist_sequence" model="ir.sequence">
+            <field name="name">checklist Sequence</field>
+            <field name="code">hp.checklist.sequence</field>
+            <field name="prefix">CHKLST-</field>
+            <field name="padding">5</field>
+            <!-- <field name="company_id" eval="False"/> -->
+        </record>
+
+        <!-- Sequences for hp.checklist2 -->
+        <record id="hp_checklist2_sequence" model="ir.sequence">
+            <field name="name">checklist2 Sequence</field>
+            <field name="code">hp.checklist2.sequence</field>
+            <field name="prefix">CHKLST2-</field>
+            <field name="padding">5</field>
+            <!-- <field name="company_id" eval="False"/> -->
+        </record>
+
+        <!-- Sequences for hp.line -->
+        <record id="hp_mine_sequence" model="ir.sequence">
+            <field name="name">line Sequence</field>
+            <field name="code">hp.line.sequence</field>
+            <field name="prefix">LINE-</field>
+            <field name="padding">5</field>
+            <!-- <field name="company_id" eval="False"/> -->
+        </record>
+
+    </data>
+</odoo>
